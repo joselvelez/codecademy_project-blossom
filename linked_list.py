@@ -1,7 +1,7 @@
 class Node:
-    def __init__(self, value, next_node=None):
+    def __init__(self, value):
         self.value = value
-        self.next_node = next_node
+        self.next_node = None
     
     def get_value(self):
         return self.value
@@ -9,26 +9,32 @@ class Node:
     def get_next_node(self):
         return self.next_node
 
-    def set_next_node(self, value):
-        self.next_node = value
+    def set_next_node(self, next_node):
+        self.next_node = next_node
 
 class LinkedList:
-    def __init__(self, value=None):
-        self.value = value
-        self.head = None
+    def __init__(self, head=None):
+        self.head = head
 
-    def add_beginning(self, value):
-        new_node = Node(value)
-        new_node.set_next_node(self.head)
-        self.head = new_node
+    def insert(self, new_node):
+        current_node = self.head
+
+        if not current_node:
+            self.head = new_node
+
+        while current_node:
+            next_node = current_node.get_next_node()
+            if not next_node:
+                current_node.set_next_node(new_node)
+            current_node = next_node
 
     def remove_node(self, value_to_remove):
         current_node = self.head
-        if current_node.get_value() == value_to_remove:
+        if current_node.get_value() == value_to_remove.get_value():
             self.head = current_node.get_next_node()
         else:
             while current_node:
-                if current_node.get_next_node().get_value() == value_to_remove:
+                if current_node.get_next_node().get_value() == value_to_remove.get_value():
                     current_node = current_node.set_next_node(current_node.get_next_node().get_next_node())
                 else:
                     current_node = current_node.get_next_node()
@@ -46,19 +52,21 @@ class LinkedList:
         print(str_lst)
 
 ''' Test / Debug '''
-
-# test_node = Node('test1')
-# print("Node Value: {node}".format(node=test_node.get_value()))
-# print("Next Node: {next}".format(next=test_node.get_next_node()))
-
-ll = LinkedList()
-ll.add_beginning(1)
-ll.add_beginning("two")
-ll.add_beginning(3)
-ll.add_beginning("four")
-ll.add_beginning(5)
-ll.add_beginning("six")
-ll.add_beginning(7)
-ll.remove_node(3)
-print("Current Head Node: {head}".format(head=ll.get_head().get_value()))
-ll.print_list()
+# ll = LinkedList()
+# one = Node(1)
+# ll.insert(one)
+# two = Node("two")
+# ll.insert(two)
+# three = Node(3)
+# ll.insert(three)
+# four = Node("four")
+# ll.insert(four)
+# five = Node(5)
+# ll.insert(five)
+# six = Node("six")
+# ll.insert(six)
+# seven = Node(7)
+# ll.insert(seven)
+# ll.remove_node(three)
+# print("Current Head Node: {head}".format(head=ll.get_head().get_value()))
+# ll.print_list()
