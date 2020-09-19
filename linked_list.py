@@ -28,6 +28,12 @@ class LinkedList:
                 current_node.set_next_node(new_node)
             current_node = next_node
 
+    def __iter__(self):
+        current_node = self.head
+        while current_node:
+            yield current_node.get_value()
+            current_node = current_node.get_next_node()
+
     def remove_node(self, value_to_remove):
         current_node = self.head
         if current_node.get_value() == value_to_remove.get_value():
