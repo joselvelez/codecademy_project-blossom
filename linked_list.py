@@ -21,11 +21,15 @@ class LinkedList:
 
         if not current_node:
             self.head = new_node
+            print("Added {node_added} to the LinkedList for the key {key}.\n \033[1;32;40m This is the first element in the list with this key.\n \033[m"
+            .format(node_added=new_node.get_value(), key=new_node.get_value()[0]))
 
         while current_node:
             next_node = current_node.get_next_node()
             if not next_node:
                 current_node.set_next_node(new_node)
+                print("Added {node_added} to the LinkedList for the key {key}.\n \033[1;35;40m There are elements already in this list. The new element has been appended to the end.\n \033[m"
+                .format(node_added=new_node.get_value(), key=new_node.get_value()[0]))
             current_node = next_node
 
     def __iter__(self):
@@ -59,19 +63,19 @@ class LinkedList:
 
 ''' Test / Debug '''
 # ll = LinkedList()
-# one = Node(1)
+# one = Node([1,'one'])
 # ll.insert(one)
-# two = Node("two")
+# two = Node([2, "two"])
 # ll.insert(two)
-# three = Node(3)
+# three = Node([3, 'three'])
 # ll.insert(three)
-# four = Node("four")
+# four = Node([4, "four"])
 # ll.insert(four)
-# five = Node(5)
+# five = Node([5, 'five'])
 # ll.insert(five)
-# six = Node("six")
+# six = Node([6, "six"])
 # ll.insert(six)
-# seven = Node(7)
+# seven = Node([7, 'seven'])
 # ll.insert(seven)
 # ll.remove_node(three)
 # print("Current Head Node: {head}".format(head=ll.get_head().get_value()))
